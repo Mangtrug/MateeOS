@@ -4,85 +4,281 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MateeOS - Sistema Operacional</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-dracula.css" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #121212; /* Tema escuro */
+      background: linear-gradient(180deg, #121212, #1f1f1f);
+      background-attachment: fixed;
       color: #e0e0e0;
       line-height: 1.6;
+      overflow-x: hidden;
+      animation: fadeInBody 1.5s ease-out forwards;
     }
+
+    @keyframes fadeInBody {
+      to {
+        opacity: 1;
+      }
+    }
+
     header {
-      background-color: #1f1f1f;
+      background-color: rgba(31, 31, 31, 0.85);
       color: #ffffff;
       text-align: center;
       padding: 1.5rem 0;
       border-bottom: 2px solid #0078d7;
+      animation: fadeSlideDown 2s ease-in-out forwards;
     }
+
     header h1 {
-      font-size: 2rem;
-      margin: 0;
+      text-shadow: 0 0 10px #0078d7, 0 0 20px #0078d7, 0 0 30px #0078d7;
     }
+
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     main {
       padding: 2rem;
       max-width: 800px;
       margin: 2rem auto;
-      background-color: #1e1e1e;
+      background-color: rgba(30, 30, 30, 0.85);
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      border: 2px solid #0078d7;
+      box-shadow: 0 0 20px rgba(0, 120, 215, 0.7), 0 0 30px rgba(0, 120, 215, 0.5);
+      animation: fadeSlideUp 2s ease-in-out forwards;
     }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     footer {
       text-align: center;
       padding: 1rem 0;
-      background-color: #1f1f1f;
+      background-color: rgba(31, 31, 31, 0.85);
       color: #ffffff;
       border-top: 2px solid #0078d7;
+      animation: fadeInUp 2.5s ease-in-out forwards;
+      text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
     }
-    a {
-      color: #0078d7;
-      text-decoration: none;
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    a:hover {
-      text-decoration: underline;
+
+    pre {
+      background: #282a36;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+      box-shadow: 0 0 10px rgba(0, 120, 215, 0.7);
+      position: relative;
     }
-    h2 {
-      color: #ffffff;
+
+    pre code {
+      color: inherit;
     }
-    code {
-      background-color: #333;
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #6272a4;
+      color: #f8f8f2;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .copy-btn:hover {
+      background-color: #50fa7b;
+      box-shadow: 0 0 15px #50fa7b, 0 0 20px #50fa7b;
+    }
+
+    #scrollTop {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #0078d7;
       color: #fff;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      font-family: monospace;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    #scrollTop:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #0078d7, 0 0 20px #0078d7;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    h2, h3 {
+      text-shadow: 0 0 0px #ffffff, 0 0 0px #ffffff;
     }
   </style>
 </head>
 <body>
+  <canvas id="stars"></canvas>
   <header>
-    <h1>MateeOS</h1>
+    <h1 id="typewriter"></h1>
     <p>O sistema operacional desenvolvido por um sonhador de 13 anos!</p>
   </header>
   <main>
-    <h2>Sobre o Projeto</h2>
-    <p>Oi, eu sou o Matheus! Sempre tive o sonho de criar meu próprio sistema operacional, e agora estou transformando isso em realidade. O MateeOS está na versão inicial (0.01), mas já é funcional e feito do zero com muita dedicação.</p>
-    <p>Mesmo achando que poucas pessoas vão usar meu sistema, é muito divertido desenvolvê-lo! Apesar das dificuldades, estudo por horas todos os dias. Algumas partes têm lógica semelhante ao Linux, pois analiso seu código para entender e implementar do meu jeito.</p>
-    <p>Espero que os códigos não fiquem confusos. Não tenho o costume de comentar para economizar espaço no sistema operacional. Cada byte importa!</p>
+    <h2>Sobre</h2>
+    <p>Oi, meu nome é Matheus, tenho 13 anos e sempre gostei de programar desde os 8. Aos 10, comecei a usar Linux e percebi como sistemas operacionais (OS) são fascinantes. Por trás de toda aparência e funcionalidade, eu me perguntava: "Será que é difícil fazer um?"</p>
+    <p>Foi aí que descobri o quão complicado é criar um OS do zero. Pensei em desistir, mas ao ver projetos no <a href="https://wiki.osdev.org" target="_blank" style="color: #50fa7b; text-decoration: none;">OSdev Wiki</a>, fiquei super motivado a tentar mais uma vez. Hoje, estudo todos os dias para aprimorar o MateeOS!</p>
 
-    <h2>Modificações do Init</h2>
-    <p>O <code>init</code> do MateeOS foi projetado com uma lógica própria, focada em simplicidade e eficiência. Ele gerencia tarefas iniciais e utiliza um sistema básico de controle de memória, inspirado em soluções modernas, mas com um toque minimalista. Novas atualizações virão em breve!</p>
+    <h2>Exemplo de inicialização</h2>
+    <pre><code class="language-c">
+void entry() {
+    print("Olá mundo!\n");
+    halt_sys();
+}
+    </code>
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button></pre>
+    <p><strong>Saída:</strong></p>
+    <pre><code class="language-c">
+Olá mundo!
 
-    <h2>Faça sua parte do seu jeito!</h2>
-    <p>Você pode notar que ele usa várias funções sem precisar declará-las explicitamente. Isso ocorre porque elas já estão incluídas na compilação. Não é necessário adicionar manualmente com <code>#include "arquivo"</code>.</p>
+System halted.
+    </code>
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button></pre>
+    
+    <h3>Observação</h3>
+    <p>Não se preocupe em incluir arquivos como <code>#include</code>, já que isso é feito automaticamente no momento da compilação. O compilador organiza tudo para você!</p>
 
-    <h2>Licença</h2>
-    <p>Este projeto está sob a licença MIT. Você pode reutilizar e modificar o código, desde que mencione os créditos ao MateeOS.</p>
+    <h2>Exemplo de função de inicialização no MateeOS</h2>
+    <pre><code class="language-c">
+void init() {
+    print("Iniciando MateeOS...\n");
+    // Configurações de sistema e drivers
+    setup_drivers();
+    load_filesystem();
+    print("Sistema pronto para uso!\n");
+    halt_sys();
+}
+    </code>
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button></pre>
+    <p><strong>Saída:</strong></p>
+    <pre><code class="language-c">
+Iniciando MateeOS...
 
-    <h2>Download</h2>
-    <p>Você pode baixar <a href="#link-para-download" download>clicando aqui!</a></p>
+Drivers carregados.
+Sistema pronto para uso!
+
+System halted.
+    </code>
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button></pre>
   </main>
   <footer>
-    <p>Feito com dedicação por Matheus Leme da Silva | Licença MIT</p>
+    <p>Feito com dedicação por Matheus Leme da Silva</p>
+    <p>Licença: MIT - Você pode modificar e redistribuir, respeitando os créditos!</p>
   </footer>
+  <button id="scrollTop">⬆</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <script>
+    // Efeito de digitação
+    const text = "MateeOS";
+    const speed = 100;
+    let i = 0;
+
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typewriter").textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    window.onload = typeWriter;
+
+    // Botão de rolar para o topo
+    const scrollTopButton = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollTopButton.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    scrollTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Fundo de estrelas com profundidade
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = Array.from({ length: 200 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 2,
+      speed: Math.random() * 0.5 + 0.1,
+    }));
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)"; // Brilho sutil
+        ctx.fill();
+        star.y += star.speed;
+        if (star.y > canvas.height) star.y = 0;
+      });
+      requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    // Função de copiar código
+    function copyCode(button) {
+      const code = button.previousElementSibling;
+      const range = document.createRange();
+      range.selectNode(code);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+      alert("Código copiado!");
+    }
+  </script>
 </body>
 </html>
