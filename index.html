@@ -166,7 +166,7 @@
   <main>
     <h2>Sobre</h2>
     <p>Oi, meu nome é Matheus, tenho 13 anos e sempre gostei de programar desde os 8. Aos 10, comecei a usar Linux e percebi como sistemas operacionais (OS) são fascinantes. Por trás de toda aparência e funcionalidade, eu me perguntava: "Será que é difícil fazer um?"</p>
-    <p>Foi aí que descobri o quão complicado é criar um OS do zero. Pensei em desistir, mas ao ver projetos no <a href="https://wiki.osdev.org" target="_blank" style="color: #50fa7b; text-decoration: none;">OSdev Wiki</a>, fiquei super motivado a tentar mais uma vez. Hoje, estudo todos os dias para aprimorar o MateeOS!</p>
+    <p>Foi aí que descobri o quão complicado é criar um OS do zero. eu fiz meu primero <a href="MateeOS.iso" download="MateeOSv0.0.001.iso" style="color: #50fa7b; text-decoration: none;">MateeOS</a> Pensei em desistir, mas ao ver projetos no <a href="https://wiki.osdev.org" target="_blank" style="color: #50fa7b; text-decoration: none;">OSdev Wiki</a>, fiquei super motivado a tentar mais uma vez. Hoje, estudo todos os dias para aprimorar o MateeOS!</p>
 
     <h2>Exemplo de inicialização</h2>
     <pre><code class="language-c">
@@ -192,8 +192,8 @@ System halted.
 void init() {
     print("Iniciando MateeOS...\n");
     // Configurações de sistema e drivers
-    setup_drivers();
-    load_filesystem();
+    setup_drivers(); /*OBS: esta incompleto, logo,  versão fornecida nao possui essa função por questoes de seguranca*/
+    load_filesystem(); /*OBS: tambem esta em desenvolvimento*/
     print("Sistema pronto para uso!\n");
     halt_sys();
 }
